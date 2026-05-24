@@ -1,1 +1,8 @@
-address: "0.0.0.0:8081"
+address: "0.0.0.0:8001"
+
+logLevel: info
+
+omlx:
+  targetUrl: "http://localhost:8000"
+  apiKey: ""
+  scrapeIntervalInSec: 5

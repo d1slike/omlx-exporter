@@ -6,4 +6,4 @@ services:
       context: .
       target: final
     ports:
-      - 8081:8081
+      - 8000:8001
