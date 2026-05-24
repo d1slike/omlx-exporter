@@ -1,6 +1,58 @@
-# oMLX Exporter Metrics
+# oMLX Exporter
 
-## Global Server Stats
+Prometheus exporter for OMLX monitoring. Exposes metrics about OMLX models, memory pressure, health, and request statistics via a `/metrics` endpoint. 
+Also provides ready-to-go Grafana dashboard.
+
+![Grafana Dashboard](static/Screenshot%202026-05-24%20at%2020.07.55.png)
+![Grafana Dashboard](static/Screenshot%202026-05-24%20at%2020.08.02.png)
+![Grafana Dashboard](static/Screenshot%202026-05-24%20at%2020.08.11.png)
+
+## Quick Start
+
+### Running with Docker Compose
+
+```bash
+# Create .env file from the example
+cp .env.example .env
+# Edit .env with your OMLX connection details
+
+docker compose up -d
+```
+
+This starts three services:
+- **omlx-exporter** - The metrics exporter on port `8001`
+- **prometheus** - Prometheus server on port `9090`
+- **grafana** - Grafana dashboard on port `3001`
+
+## Configuration
+
+Configuration is loaded from `config.yaml` and can be overridden via environment variables.
+
+| Parameter | Description | Default |
+|-----------|-------------|---------|
+| `address` | HTTP listen address | `0.0.0.0:8001` |
+| `logLevel` | Log level (debug, info, warn, error) | `info` |
+| `omlx.targetUrl` | OMLX API endpoint | `http://localhost:8000` |
+| `omlx.apiKey` | OMLX API key | (empty) |
+| `omlx.scrapeIntervalInSec` | Scrape interval in seconds | `5` |
+
+Environment variable names match the YAML keys (e.g., `omlx.targetUrl`).
+
+## Dashboard
+Grafana Dashboard configuration lives [here](/grafana/provisioning/dashboards/omlx-exporter.json)
+
+## Endpoints
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /metrics` | Prometheus-format metrics |
+| `GET /metrics/description` | Structured metric descriptions |
+
+## Metrics
+
+The exporter exposes the following categories of metrics:
+
+### Global Server Stats
 
 | Metric | Type | Description |
 |--------|------|-------------|
@@ -13,7 +65,7 @@
 | `omlx_stats_avg_generation_tps` | Gauge | Average generation tokens per second across all requests |
 | `omlx_stats_uptime_seconds` | Gauge | Server uptime in seconds |
 
-## Active Models (Global)
+### Active Models (Global)
 
 | Metric | Type | Description |
 |--------|------|-------------|
@@ -24,7 +76,7 @@
 | `omlx_active_models_memory_soft_bytes` | Gauge | Soft memory limit in bytes (warning threshold) |
 | `omlx_active_models_memory_hard_bytes` | Gauge | Hard memory limit in bytes (eviction threshold) |
 
-## Per-Model Request Counts
+### Per-Model Request Counts
 
 | Metric | Labels | Description |
 |--------|--------|-------------|
@@ -33,7 +85,7 @@
 | `omlx_model_generating_requests` | `model` | Number of requests currently generating tokens for the model |
 | `omlx_model_active_requests` | `model` | Total active requests (prefilling + generating) for the model |
 
-## Per-Model Generating Metrics
+### Per-Model Generating Metrics
 
 | Metric | Labels | Description |
 |--------|--------|-------------|
@@ -41,7 +93,7 @@
 | `omlx_model_generating_generated_tokens` | `model` | Total generated tokens across all generating requests per model |
 | `omlx_model_generating_elapsed_seconds` | `model` | Total elapsed time across all generating requests per model |
 
-## Per-Model Prefilling Metrics
+### Per-Model Prefilling Metrics
 
 | Metric | Labels | Description |
 |--------|--------|-------------|
@@ -49,16 +101,27 @@
 | `omlx_model_prefilling_prompt_tokens` | `model` | Total prompt tokens across all prefilling requests per model |
 | `omlx_model_prefilling_elapsed_seconds` | `model` | Total elapsed time across all prefilling requests per model |
 
-## Per-Model Waiting Metrics
+### Per-Model Waiting Metrics
 
 | Metric | Labels | Description |
 |--------|--------|-------------|
 | `omlx_model_waiting_queue_position` | `model` | Queue position for waiting requests (sum across all waiting requests per model) |
 | `omlx_model_waiting_elapsed_seconds` | `model` | Total elapsed time across all waiting requests per model |
 
-## Health
+### Health
 
 | Metric | Type | Description |
 |--------|------|-------------|
 | `omlx_scrape_duration_seconds` | Histogram | Duration of each scrape from oMLX API in seconds |
 | `omlx_scrape_failures_total` | Counter | Total number of failed scrapes from oMLX API |
+
+## Adding New Metrics
+
+1. Define the metric in the `metrics/` package
+2. Register it with `metrics.DefaultRegistry`
+3. Update the scraper in `exporter/` to collect and set metric values
+4. Add corresponding API types in `client/models.go` if needed
+
+## License
+
+MIT
