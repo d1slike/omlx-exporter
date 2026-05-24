@@ -1,0 +1,9 @@
+services:
+  omlx-exporter:
+    container_name: "omlx-exporter"
+    restart: "unless-stopped"
+    build:
+      context: .
+      target: final
+    ports:
+      - 8081:8081
