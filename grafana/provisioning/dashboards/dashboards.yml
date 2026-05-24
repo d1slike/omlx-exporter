@@ -1,0 +1,13 @@
+apiVersion: 1
+
+providers:
+  - name: "OMLX Dashboard"
+    type: file
+    access: proxy
+    orgId: 1
+    folder: ""
+    folderUid: ""
+    options:
+      path: /etc/grafana/provisioning/dashboards
+      foldersFromFilesStructure: false
+    overwrite: true

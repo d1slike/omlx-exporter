@@ -32,7 +32,7 @@ func (s *Scraper) Run(ctx context.Context) error {
 	for {
 		select {
 		case <-ctx.Done():
-			return nil
+			return ctx.Err()
 		case <-s.stopCh:
 			return nil
 		case <-ticker.C:
@@ -61,13 +61,14 @@ func (s *Scraper) scrape(ctx context.Context) {
 				s.logger.Error(ctx, "failed to fetch stats after session refresh", log.Any("error", err))
 				return
 			}
+		} else {
+			s.logger.Error(ctx, "failed to fetch stats", log.Any("error", err))
+			return
 		}
-		s.logger.Error(ctx, "failed to fetch stats", log.Any("error", err))
-		return
 	}
 	s.updateStats(resp)
 	s.updateActiveModels(resp)
-	metrics.RecordScrapeDuration(float64(time.Since(start).Nanoseconds()))
+	metrics.RecordScrapeDuration(time.Since(start).Seconds())
 }
 
 func (s *Scraper) updateStats(resp *client.StatsResponse) {
@@ -111,6 +112,12 @@ func (s *Scraper) updateActiveModels(resp *client.StatsResponse) {
 			metrics.SetModelGeneratingTPS(model, g.TokensPerSecond)
 			metrics.SetModelGeneratingTokens(model, float64(g.GeneratedTokens))
 			metrics.SetModelGeneratingElapsed(model, g.ElapsedSeconds)
+		}
+
+		for _, p := range m.Prefilling {
+			metrics.SetModelPrefillingTPS(model, p.TokensPerSecond)
+			metrics.SetModelPrefillingTokens(model, float64(p.PromptTokens))
+			metrics.SetModelPrefillingElapsed(model, p.ElapsedSeconds)
 		}
 
 		for _, w := range m.Waiting {

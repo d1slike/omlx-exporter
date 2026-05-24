@@ -5,8 +5,9 @@ services:
     build:
       context: .
       target: final
+    env_file: .env
     ports:
-      - 8000:8001
+      - 8001:8001
 
   prometheus:
     image: prom/prometheus:latest
@@ -15,6 +16,8 @@ services:
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus-data:/prometheus
+    ports:
+      - "9090:9090"
     depends_on:
       - omlx-exporter
 

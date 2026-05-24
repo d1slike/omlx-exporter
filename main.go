@@ -16,6 +16,7 @@ import (
 	"go.uber.org/zap/zapcore"
 
 	"github.com/d1slike/omlx-exporter/client"
+	"github.com/d1slike/omlx-exporter/config"
 	"github.com/d1slike/omlx-exporter/exporter"
 )
 
@@ -32,7 +33,7 @@ func main() {
 
 	ctx := application.Context()
 	logger := application.Logger()
-	cfg := Config{}
+	cfg := config.Config{}
 	err = application.Config().Read(&cfg)
 	if err != nil {
 		logger.Fatal(ctx, errors.WithMessage(err, "read config"))
