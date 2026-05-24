@@ -26,7 +26,7 @@ services:
     container_name: "grafana"
     restart: "unless-stopped"
     ports:
-      - 3001:3000
+      - 3000:3000
     volumes:
       - ./grafana/provisioning:/etc/grafana/provisioning:ro
     depends_on:

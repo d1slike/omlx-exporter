@@ -22,7 +22,7 @@ docker compose up -d
 This starts three services:
 - **omlx-exporter** - The metrics exporter on port `8001`
 - **prometheus** - Prometheus server on port `9090`
-- **grafana** - Grafana dashboard on port `3001`
+- **grafana** - Grafana dashboard on port `3000`
 
 ## Configuration
 
@@ -35,6 +35,8 @@ Configuration is loaded from `config.yaml` and can be overridden via environment
 | `omlx.targetUrl` | OMLX API endpoint | `http://localhost:8000` |
 | `omlx.apiKey` | OMLX API key | (empty) |
 | `omlx.scrapeIntervalInSec` | Scrape interval in seconds | `5` |
+
+> For running in Docker on MacOS you should use `host.docker.internal:8000`
 
 Environment variable names match the YAML keys (e.g., `omlx.targetUrl`).
 
