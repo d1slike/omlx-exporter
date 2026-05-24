@@ -7,3 +7,27 @@ services:
       target: final
     ports:
       - 8000:8001
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: "prometheus"
+    restart: "unless-stopped"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    depends_on:
+      - omlx-exporter
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: "grafana"
+    restart: "unless-stopped"
+    ports:
+      - 3001:3000
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+    depends_on:
+      - prometheus
+
+volumes:
+  prometheus-data:
