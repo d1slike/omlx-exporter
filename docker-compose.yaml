@@ -10,19 +10,17 @@ services:
       - 8001:8001
 
   prometheus:
-    image: prom/prometheus:latest
+    image: prom/prometheus:main
     container_name: "prometheus"
     restart: "unless-stopped"
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus-data:/prometheus
-    ports:
-      - "9090:9090"
     depends_on:
       - omlx-exporter
 
   grafana:
-    image: grafana/grafana:latest
+    image: grafana/grafana:main-slim
     container_name: "grafana"
     restart: "unless-stopped"
     ports:
