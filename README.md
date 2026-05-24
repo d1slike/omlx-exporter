@@ -1,6 +1,6 @@
 # oMLX Exporter
 
-Prometheus exporter for OMLX monitoring. Exposes metrics about OMLX models, memory pressure, health, and request statistics via a `/metrics` endpoint. 
+Prometheus exporter for [oMLX](https://github.com/jundot/omlx) monitoring. Exposes metrics about OMLX models, memory pressure, health, and request statistics via a `/metrics` endpoint. 
 Also provides ready-to-go Grafana dashboard.
 
 ![Grafana Dashboard](static/Screenshot%202026-05-24%20at%2020.07.55.png)
