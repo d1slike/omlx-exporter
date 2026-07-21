@@ -115,9 +115,9 @@ func (s *Scraper) updateActiveModels(resp *client.StatsResponse) {
 		}
 
 		for _, p := range m.Prefilling {
-			metrics.SetModelPrefillingTPS(model, p.TokensPerSecond)
-			metrics.SetModelPrefillingTokens(model, float64(p.PromptTokens))
-			metrics.SetModelPrefillingElapsed(model, p.ElapsedSeconds)
+			metrics.SetModelPrefillingTPS(model, p.Speed)
+			metrics.SetModelPrefillingTokens(model, float64(p.Total))
+			metrics.SetModelPrefillingElapsed(model, p.Elapsed)
 		}
 
 		for _, w := range m.Waiting {

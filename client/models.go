@@ -34,7 +34,7 @@ type ActiveModel struct {
 	ModelID        string           `json:"id"`
 	ActiveRequests int              `json:"active_requests"`
 	WaitingRequests int             `json:"waiting_requests"`
-	Prefilling     []RequestDetail  `json:"prefilling"`
+	Prefilling     []PrefillRequest `json:"prefilling"`
 	Generating     []RequestDetail  `json:"generating"`
 	Waiting        []WaitingRequest `json:"waiting"`
 	IdleSeconds    float64          `json:"idle_seconds"`
@@ -48,6 +48,16 @@ type RequestDetail struct {
 	LastActivityAgeSeconds float64 `json:"last_activity_age_seconds"`
 	PromptTokens           int     `json:"prompt_tokens"`
 	MaxTokens              int     `json:"max_tokens"`
+}
+
+type PrefillRequest struct {
+	RequestID string  `json:"request_id"`
+	Processed int     `json:"processed"`
+	Total     int     `json:"total"`
+	Speed     float64 `json:"speed"`
+	ETA       float64 `json:"eta"`
+	Elapsed   float64 `json:"elapsed"`
+	Phase     string  `json:"phase"`
 }
 
 type WaitingRequest struct {

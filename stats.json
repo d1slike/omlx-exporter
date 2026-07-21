@@ -1,0 +1,176 @@
+{
+    "total_tokens_served": 1512269,
+    "total_cached_tokens": 1216512,
+    "cache_efficiency": 82.2,
+    "total_prompt_tokens": 1480003,
+    "total_completion_tokens": 32266,
+    "total_requests": 79,
+    "avg_prefill_tps": 964.9,
+    "avg_generation_tps": 88.2,
+    "uptime_seconds": 15599.7,
+    "host": "0.0.0.0",
+    "port": 8000,
+    "api_key": "qtLlMg9uOB9E9VL2WGB6OFBsAQXCgYVySekbuxoyhWamgk4xP5xQpjLhgbOfg4EF716UdQqhl1PbQMf3qnd4PywhKQA75WW2Go1Wv7vAwnizAIaSJeHM7krEj2ex4OMf",
+    "cli_prefix": "omlx",
+    "claude_code_context_scaling_enabled": false,
+    "claude_code_target_context_size": 200000,
+    "engines": {
+        "mlx-lm": {
+            "name": "mlx-lm",
+            "version": "0.31.3",
+            "commit": "ab1806e8f5d6aa035973af194a1b9198ab4754dc",
+            "url": "https://github.com/ml-explore/mlx-lm/commit/ab1806e8f5d6aa035973af194a1b9198ab4754dc"
+        },
+        "mlx-vlm": {
+            "name": "mlx-vlm",
+            "version": "0.6.3",
+            "commit": "78b96eb5462141447b9a6b4943ef553891da56dd",
+            "url": "https://github.com/Blaizzy/mlx-vlm/commit/78b96eb5462141447b9a6b4943ef553891da56dd"
+        },
+        "mlx-embeddings": {
+            "name": "mlx-embeddings",
+            "version": "0.1.0",
+            "commit": "32981fa4e8064ed664b52071789dd18271fe4206",
+            "url": "https://github.com/Blaizzy/mlx-embeddings/commit/32981fa4e8064ed664b52071789dd18271fe4206"
+        },
+        "mlx-audio": {
+            "name": "mlx-audio",
+            "version": "0.4.5",
+            "commit": "51753266e0a4f766fd5e6fbc46652224efc23981",
+            "url": "https://github.com/Blaizzy/mlx-audio/commit/51753266e0a4f766fd5e6fbc46652224efc23981"
+        }
+    },
+    "active_models": {
+        "models": [
+            {
+                "id": "Qwen3.6-35B-A3B-oQ5e-mtp",
+                "estimated_size": 27203608658,
+                "estimated_size_formatted": "25.34GB",
+                "actual_size": 26298540792,
+                "actual_size_formatted": "24.49GB",
+                "pinned": false,
+                "is_loading": false,
+                "loading_elapsed_seconds": null,
+                "loading_estimated_seconds": null,
+                "loading_remaining_seconds_estimate": null,
+                "active_requests": 1,
+                "waiting_requests": 0,
+                "waiting": [],
+                "activities": [],
+                "prefilling": [
+                    {
+                        "request_id": "55aab8fd-5db9-4950-a8f5-5eed067f43c8",
+                        "processed": 8192,
+                        "total": 17106,
+                        "speed": 1606.0,
+                        "eta": 5.6,
+                        "elapsed": 4.6,
+                        "phase": "prefill",
+                        "detail": null
+                    }
+                ],
+                "generating": [],
+                "idle_seconds": 5.909165143966675,
+                "ttl_remaining_seconds": 3594.0908348560333
+            }
+        ],
+        "model_memory_used": 29999672264,
+        "model_memory_max": 0,
+        "memory_pressure": {
+            "enabled": true,
+            "current_bytes": 29999672264,
+            "soft_bytes": 0,
+            "hard_bytes": 0,
+            "current_formatted": "27.9GB",
+            "soft_formatted": "0.0GB",
+            "hard_formatted": "0.0GB",
+            "pressure_level": "ok"
+        },
+        "total_active_requests": 1,
+        "total_waiting_requests": 0
+    },
+    "runtime_cache": {
+        "base_path": "/Users/yan/.omlx",
+        "ssd_cache_dir": "/Users/yan/.omlx/cache",
+        "response_state_dir": "/Users/yan/.omlx/cache/response-state",
+        "models": [
+            {
+                "id": "Qwen3.6-35B-A3B-oQ5e-mtp",
+                "block_size": 2048,
+                "indexed_blocks": 81,
+                "indexed_blocks_display": "81",
+                "has_sub_block_cache": false,
+                "partial_block_skips": 0,
+                "partial_tokens_skipped": 0,
+                "last_partial_tokens_skipped": 0,
+                "last_tokens_to_next_block": 0,
+                "num_files": 0,
+                "total_size_bytes": 0,
+                "max_size_bytes": 98784247808,
+                "hot_cache_max_bytes": 68719476736,
+                "hot_cache_size_bytes": 0,
+                "hot_cache_entries": 0,
+                "cache_rates": {
+                    "windows": {
+                        "1m": {
+                            "prefix_hit_rate": 0.0,
+                            "prefix_hits": 0,
+                            "prefix_misses": 1,
+                            "prefix_match_efficiency": 0.0,
+                            "evictions": 0,
+                            "eviction_rate_per_min": 0.0,
+                            "ssd_hot_hits": 0,
+                            "ssd_disk_loads": 0,
+                            "ssd_hot_rate": 0.0
+                        },
+                        "5m": {
+                            "prefix_hit_rate": 0.0,
+                            "prefix_hits": 0,
+                            "prefix_misses": 1,
+                            "prefix_match_efficiency": 0.0,
+                            "evictions": 0,
+                            "eviction_rate_per_min": 0.0,
+                            "ssd_hot_hits": 0,
+                            "ssd_disk_loads": 0,
+                            "ssd_hot_rate": 0.0
+                        },
+                        "15m": {
+                            "prefix_hit_rate": 0.0,
+                            "prefix_hits": 0,
+                            "prefix_misses": 1,
+                            "prefix_match_efficiency": 0.0,
+                            "evictions": 0,
+                            "eviction_rate_per_min": 0.0,
+                            "ssd_hot_hits": 0,
+                            "ssd_disk_loads": 0,
+                            "ssd_hot_rate": 0.0
+                        }
+                    },
+                    "cumulative": {
+                        "prefix_hits": 62,
+                        "prefix_misses": 12,
+                        "prefix_hit_rate": 0.8378,
+                        "prefix_tokens_saved": 1200128,
+                        "prefix_match_efficiency": 0.8252,
+                        "evictions": 0,
+                        "ssd_hot_hits": 586,
+                        "ssd_disk_loads": 0,
+                        "ssd_saves": 81,
+                        "hot_cache_evictions": 0,
+                        "hot_cache_promotions": 0,
+                        "ssd_hot_rate": 1.0
+                    }
+                }
+            }
+        ],
+        "total_num_files": 0,
+        "total_size_bytes": 0,
+        "effective_block_sizes": [
+            2048
+        ],
+        "disk_max_bytes": 98784247808,
+        "hot_cache_max_bytes": 68719476736,
+        "hot_cache_size_bytes": 0,
+        "hot_cache_entries": 0
+    }
+}
